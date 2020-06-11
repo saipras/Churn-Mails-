@@ -1,0 +1,14 @@
+def count_message_from_domain():
+    lineslist=[]
+    domaindict={}
+    with open("/cxldata/datasets/project/mbox-short.txt") as f:
+        for line in f:
+            lineslist = line.split()
+            if line.startswith('From:'):
+                email=lineslist[1]
+                domain = email.split('@')[1] 
+                if domain not in domaindict:
+                    domaindict[domain] = 1
+                else:
+                    domaindict[domain] += 1
+    return domaindict
