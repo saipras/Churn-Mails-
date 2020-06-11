@@ -1,0 +1,11 @@
+def average_spam_confidence():
+    with open('/cxldata/datasets/project/mbox-short.txt') as f:
+        count = 0
+        spam_confidence_sum = 0
+        for line in f:
+            line = line.rstrip() # Remove new line characters from right
+            if line.startswith('X-DSPAM-Confidence:'):
+                var, value = line.split(':')
+                spam_confidence_sum = spam_confidence_sum + float(value)
+                count = count + 1
+    return spam_confidence_sum/count
